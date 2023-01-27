@@ -49,9 +49,8 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_many   :order_addresses
 
-## order-addresses テーブル
+## order_addresses テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
