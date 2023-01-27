@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to :user
-- has_many   :orders
+- belongs_to :order_address, through: :order
 
 ## orders テーブル
 
@@ -47,7 +47,7 @@
 
 ### Association
 
-- belongs_to :item
+- belongs_to :item, through: :order_address
 - belongs_to :user
 
 ## order_addresses テーブル
