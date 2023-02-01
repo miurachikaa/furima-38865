@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品' do
     context '商品出品できる場合' do
-      it '価格が半角英数値であれば登録できる' do
+      it '全ての項目が正しく入力されていれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -28,29 +28,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item info can't be blank")
       end
       it 'カテゴリーが空では保存できない' do
-        @item.item_category_id = ''
+        @item.item_category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item category is not a number')
+        expect(@item.errors.full_messages).to include('Item category must be other than 1')
       end
       it '商品の状態が空では保存できない' do
-        @item.item_sales_status_id = ''
+        @item.item_sales_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item sales status is not a number')
+        expect(@item.errors.full_messages).to include('Item sales status must be other than 1')
       end
       it '配送料の負担が空では保存できない' do
-        @item.item_shipping_fee_status_id = ''
+        @item.item_shipping_fee_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item shipping fee status is not a number')
+        expect(@item.errors.full_messages).to include('Item shipping fee status must be other than 1')
       end
       it '発送元の地域が空では保存できない' do
-        @item.item_prefecture_id = ''
+        @item.item_prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item prefecture is not a number')
+        expect(@item.errors.full_messages).to include('Item prefecture must be other than 1')
       end
       it '発送までの日数が空では保存できない' do
-        @item.item_scheduled_delivery_id = ''
+        @item.item_scheduled_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item scheduled delivery is not a number')
+        expect(@item.errors.full_messages).to include('Item scheduled delivery must be other than 1')
       end
       it '価格が空では保存できない' do
         @item.item_price = ''
@@ -71,6 +71,11 @@ RSpec.describe Item, type: :model do
         @item.item_price = 'あああ'
         @item.valid?
         expect(@item.errors.full_messages).to include('Item price is not a number')
+      end
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
