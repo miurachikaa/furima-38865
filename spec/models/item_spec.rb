@@ -60,12 +60,12 @@ RSpec.describe Item, type: :model do
       it '価格が￥299より少ない時は保存できない' do
         @item.item_price = 299
         @item.valid?
-        expect(@item.errors.full_messages)
+        expect(@item.errors.full_messages).to include('Item price must be greater than or equal to 300')
       end
       it '価格が￥9999999より多い時は保存できない' do
         @item.item_price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages)
+        expect(@item.errors.full_messages).to include('Item price must be less than or equal to 9999999')
       end
       it '価格が全角では登録できない' do
         @item.item_price = 'あああ'
