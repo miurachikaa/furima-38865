@@ -30,27 +30,27 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが空では保存できない' do
         @item.item_category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item category is not a number")
+        expect(@item.errors.full_messages).to include('Item category is not a number')
       end
       it '商品の状態が空では保存できない' do
         @item.item_sales_status_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item sales status is not a number")
+        expect(@item.errors.full_messages).to include('Item sales status is not a number')
       end
       it '配送料の負担が空では保存できない' do
         @item.item_shipping_fee_status_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item shipping fee status is not a number")
+        expect(@item.errors.full_messages).to include('Item shipping fee status is not a number')
       end
       it '発送元の地域が空では保存できない' do
         @item.item_prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item prefecture is not a number")
+        expect(@item.errors.full_messages).to include('Item prefecture is not a number')
       end
       it '発送までの日数が空では保存できない' do
         @item.item_scheduled_delivery_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item scheduled delivery is not a number")
+        expect(@item.errors.full_messages).to include('Item scheduled delivery is not a number')
       end
       it '価格が空では保存できない' do
         @item.item_price = ''
