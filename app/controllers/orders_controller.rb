@@ -1,18 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :prevent_url, only: [:index]
+  before_action :set_item, only: [:index, :create, :update, :destroy]
 
   def index
     @order_information = OrderInformation.new
-    @item = Item.find(params[:item_id])
-    return unless @item.order.present?
-
-    redirect_to root_path
   end
 
   def create
     @order_information = OrderInformation.new(order_params)
-    @item = Item.find(params[:item_id])
     if @order_information.valid?
       pay_item
       @order_information.save
@@ -44,5 +40,9 @@ class OrdersController < ApplicationController
     return unless @item.user_id == current_user.id || !@item.order.nil?
 
     redirect_to root_path
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end

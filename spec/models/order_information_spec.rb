@@ -13,6 +13,10 @@ RSpec.describe OrderInformation, type: :model do
       it '全ての項目が正しく入力されていれば登録できる' do
         expect(@order_information).to be_valid
       end
+      it '建物名が空でも購入できる' do
+        @order_information.building = ''
+        expect(@order_information).to be_valid
+      end
     end
     context '商品購入できない場合' do
       it '郵便番号が空では保存できない' do
